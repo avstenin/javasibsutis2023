@@ -34,10 +34,18 @@ public class Main {
             list.add(input.next());
         }
         System.out.println("Result:");
+        String minTime, minTimeSite;
+        minTimeSite = list.get(0);
+        minTime = getAverageTimeToPingSite(minTimeSite);
         for (String i: list) {
             String time = getAverageTimeToPingSite(i);
-            System.out.println("Average time to ping site \"" + i + "\" " + "is " + time);
+            if (Integer.valueOf(minTime) > Integer.valueOf(time)) {
+                minTime = time;
+                minTimeSite = i;
+            }
+            System.out.println("Average time to ping site \"" + i + "\" " + "is " + time  + "ms");
         }
+        System.out.println("\nMinimal time to ping site \"" + minTimeSite + "\" " + "is " + minTime  + "ms");
     }
 
     private static String getAverageTimeToPingSite(String site) throws Exception {
@@ -57,7 +65,7 @@ public class Main {
             }
             b = answer.split(" ");
         }
-        result = "Average time = " + b[b.length - 2] + "ms";
+        result = b[b.length - 2];
         return result;
     }
 }
