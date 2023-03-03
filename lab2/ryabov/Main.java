@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -11,9 +12,10 @@ public class Main {
                 System.out.println("Enter DNS server address:");
                 speedMeasurer.add(input.next());
             }
-            speedMeasurer.printResults();
+            Collections.sort(speedMeasurer.dnsInfos());
             var writer = new CsvWriter("statistics.csv");
             writer.write(speedMeasurer.dnsInfos());
+            CsvPrinter.print(new CsvReader("statistics.csv"));
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
