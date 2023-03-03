@@ -2,13 +2,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CsvWriter {
     private final File file;
 
-    public CsvWriter(String path) throws IOException {
-        file = new File(path);
+    public CsvWriter(String fileName) throws IOException {
+        file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();
             try (var writer = new FileWriter(file, true)) {
@@ -23,7 +22,7 @@ public class CsvWriter {
                 var builder = new StringBuilder();
                 writer.write(builder.append(dnsInfo.address()).
                         append(",").append(dnsInfo.time()).
-                        append(" ms,").append(new Date()).
+                        append(" ms,").append(dnsInfo.date()).
                         append("\n").toString());
             }
         }

@@ -2,10 +2,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 import java.util.regex.Pattern;
 
-record DnsInfos(String address, Double time) implements Comparable<DnsInfos> {
+record DnsInfos(String address, Double time, String date) implements Comparable<DnsInfos> {
     @Override
     public int compareTo(DnsInfos o) {
         return this.time.compareTo(o.time);
@@ -36,15 +36,7 @@ public class DnsSpeedMeasurer {
             time += getTimeFromPingInfo(line);
         }
         time /= pingNumber;
-        dnsInfos.add(new DnsInfos(dnsAddress, time));
-    }
-
-    public void printResults() {
-        Collections.sort(dnsInfos);
-        System.out.println("Address\tAverage time");
-        for (var dnsInfo : dnsInfos) {
-            System.out.println(dnsInfo.address() + "\t" + dnsInfo.time() + " ms");
-        }
+        dnsInfos.add(new DnsInfos(dnsAddress, time, (new Date()).toString()));
     }
 
     public ArrayList<DnsInfos> dnsInfos() {
