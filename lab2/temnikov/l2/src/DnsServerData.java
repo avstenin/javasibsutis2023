@@ -39,6 +39,7 @@ public class DnsServerData {
         } catch (FileNotFoundException e) {
             System.out.println("The file could not be found.");
             e.printStackTrace();
+            return null;
         }
         return servers;
     }

@@ -18,24 +18,16 @@ public class DnsTest {
     public void calcServerResponseTime() {
         for(int i = 0; i < dnsAddresses.size(); i++) {
             try {
-                Process process = Runtime.getRuntime().exec("ping -n 10 " + dnsAddresses.get(i));
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                long sum = 0;
-                int count = 0;
-                double time = -1.0;
-                while ((line = reader.readLine()) != null) {
-                    if (line.contains("time=")) {
-                        int startIndex = line.indexOf("time=")+5;
-                        int endIndex = line.indexOf("ms", startIndex);
-                        String averageTimeStr = line.substring(startIndex, endIndex).trim();
-                        time += Long.parseLong(averageTimeStr);
-                    }
+                InetAddress address = InetAddress.getByName(dnsAddresses.get(i));
+                long startTime = System.currentTimeMillis();
+                if (address.isReachable(5000)) {
+                    long endTime = System.currentTimeMillis();
+                    responseTimes.put(dnsAddresses.get(i), (double)(endTime - startTime));
+                } else {
+                    System.err.println("Host " + dnsAddresses.get(i) + " is not reachable");
                 }
-                time /= 10;
-                responseTimes.put(dnsAddresses.get(i), time);
             } catch (IOException e) {
-                System.err.println("Error sending ping request to " + dnsAddresses.get(i) + ": " + e.getMessage());
+                System.err.println("Error checking host " + dnsAddresses.get(i) + ": " + e.getMessage());
             }
         }
     }

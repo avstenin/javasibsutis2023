@@ -29,4 +29,12 @@ public class DnsServer {
         responseTime[0] = newResponseTimeOne;
         responseTime[1] = newResponseTimeTwo;
     }
+
+    public void setResponseTimeOne(double newResponseTimeOne) {
+        responseTime[0] = newResponseTimeOne;
+    }
+
+    public void setResponseTimeTwo(double newResponseTimeTwo) {
+        responseTime[1] = newResponseTimeTwo;
+    }
 }

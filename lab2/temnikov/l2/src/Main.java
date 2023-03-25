@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number of DNS servers: ");
         int numbDnsServers = scanner.nextInt();
@@ -22,14 +23,20 @@ public class Main {
         dnsTest.calcServerResponseTime();
 
         DnsServer[] servers = new DnsServer[numbDnsServers];
-        Map<String, Double> responseTimes = dnsTest.getResponseTimes();
-        int index = 0;
-        for (String dnsAddress : responseTimes.keySet()) {
-            double responseTime = responseTimes.get(dnsAddress);
-            servers[index] = new DnsServer(dnsAddress, responseTime, 0.0);
-            index++;
+        for(int i = 0; i < 2; ++i) {
+            Map<String, Double> responseTimes = dnsTest.getResponseTimes();
+            int index = 0;
+            for (String dnsAddress : responseTimes.keySet()) {
+                double responseTime = responseTimes.get(dnsAddress);
+                if(i == 0) {
+                    servers[index] = new DnsServer(dnsAddress, responseTime, 0.0);
+                } else if (i == 1){
+                    servers[index].setResponseTimeTwo(responseTime);
+                }
+                index++;
+            }
+            dnsTest.calcServerResponseTime();
         }
-
         DnsServerData.writeDataToFile(servers);
 
         List<DnsServer> serversFromFile = DnsServerData.readFilesFromDirectory();
