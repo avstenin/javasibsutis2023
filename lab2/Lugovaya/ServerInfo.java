@@ -1,4 +1,6 @@
-public class ServerInfo implements Comparable
+import java.io.Serializable;
+
+public class ServerInfo implements Comparable, Serializable
 {
     private Float averageTime = -1.0f;
     private String serverAddress;

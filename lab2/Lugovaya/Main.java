@@ -1,8 +1,8 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -50,12 +50,18 @@ public class Main {
 
         Arrays.sort(servers, Collections.reverseOrder());
 
-        for (int i = 0; i < servers.length; i++) {
-            if (servers[i].getAverageTime()!=-1.0){
-                System.out.println("Server " + servers[i].getServerAddress() + " has an average response time: " + servers[i].getAverageTime() + " ms");
-            } else{
-                System.out.println("Server " + servers[i].getServerAddress() +" is unavailable");
-            }
+        System.out.println("Save data? yes/no");
+
+        String input = scanner.next();
+
+        if (Objects.equals(input, "yes")){
+            System.out.println("Enter the name of the file:");
+
+            String name = scanner.next();
+
+            ServerInfoSerializer.save(servers, "./src/dir/"+name);
+
+            FileScanner.scan("./src/dir");
         }
 
     }
