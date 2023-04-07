@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
-//      Input DNS to connect
         ArrayList<String> sites = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
             System.out.println("Please enter a address " + (i + 1) + ":");
@@ -18,7 +17,6 @@ public class Main {
             System.out.println("Connecting site " + sites.get(i));
             pingTime[i] = getAverageTimeToPingSite(sites.get(i));
         }
-//      Sorting sites by ping time
         for (int j = 0; j<2;j++) {
             for (int i = 1; i < 3; i++) {
                 if (pingTime[i] > pingTime[i - 1]) {
@@ -29,7 +27,6 @@ public class Main {
                 }
             }
         }
-//      check for
         for (int i=0; i<3; i++) {
             if (pingTime[i]>10000){
                 System.out.println("Site " + sites.get(i) + " is unreachable");
@@ -41,8 +38,11 @@ public class Main {
     }
 
     private static int getAverageTimeToPingSite(String site) throws Exception {
-//      boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "ping " + site);
+        boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+        ProcessBuilder builder = new ProcessBuilder("bash", "-c", "ping " + site);
+        if (isWindows){
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "ping " + site);
+        }
         builder.redirectErrorStream();
         Proces s process = builder.start();
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
