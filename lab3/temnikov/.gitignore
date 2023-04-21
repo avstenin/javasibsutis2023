@@ -1,0 +1,17 @@
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Compiled files
+out/
+*.class
+
+# Gradle files
+.gradle/
+build/
+
+# Maven files
+target/
+pom.xml.*
