@@ -1,0 +1,32 @@
+# IntelliJ IDEA
+.idea/
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# Gradle specific
+.gradle/
+build/
+
+# Maven specific
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# CMake
+cmake-build-debug/
+cmake-build-release/
+
+# macOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db

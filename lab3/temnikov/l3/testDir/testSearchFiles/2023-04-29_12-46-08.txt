@@ -1,0 +1,4 @@
+Ping to 8.8.8.8 is 96 ms
+Ping to 1.1.1.1 is 49 ms
+Ping to 8.8.8.8 is 83 ms
+Ping to 77.88.8.8 is 56 ms

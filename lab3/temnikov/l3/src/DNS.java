@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.net.InetAddress;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class DNS implements Comparable<DNS>{
     private final String dnsIP;
@@ -30,7 +29,7 @@ public class DNS implements Comparable<DNS>{
     }
 
     public void printInfo() {
-        System.out.println(dnsIP + " " + time.toMillis());
+        System.out.println("Ping to " + dnsIP + " is " + time.toMillis() + " ms");
     }
 
     public static boolean isValidDNSServer(String dnsServer) {
