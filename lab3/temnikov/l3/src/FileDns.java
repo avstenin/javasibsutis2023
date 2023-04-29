@@ -26,14 +26,14 @@ public class FileDns {
         }
     }
 
-    private static List<String> getMeasurementFiles() {
+    public static List<String> getMeasurementFiles() {
         List<String> measurementFiles = new ArrayList<>();
         String searchPattern = "\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2}\\.txt";
         searchFiles(new File("."), searchPattern, measurementFiles);
         return measurementFiles;
     }
 
-    private static void searchFiles(File directory, String searchPattern, List<String> result) {
+    public static void searchFiles(File directory, String searchPattern, List<String> result) {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
@@ -81,8 +81,5 @@ public class FileDns {
         }
         return DNSPairs;
     }
-
-
-
 
 }
