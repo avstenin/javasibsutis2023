@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Monitoring</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <h1>Network Monitoring Dashboard</h1>
+
+    <table>
+        <thead>
+            <tr class="table-header">
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="parameter : ${parameters}">
+                <td th:text="${parameter.key}"></td>
+                <td th:text="${parameter.value}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
